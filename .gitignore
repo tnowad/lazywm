@@ -1,0 +1,67 @@
+
+# Ignore build directories
+/build/
+*.build/
+
+# Ignore CMake and other generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.ninja
+
+# Ignore compiled object files and binaries
+*.o
+*.obj
+*.so
+*.a
+*.out
+*.exe
+
+# Ignore IDE-specific files
+/.idea/
+/.vscode/
+/*.suo
+/*.user
+/*.userosscache
+/*.sln
+/*.swp
+*.suo
+*.user
+*.DS_Store
+
+# Ignore temporary files
+*.tmp
+*.log
+*.pid
+*.swp
+
+# Ignore local configuration files
+*.local
+*.env
+*.tmp
+*.cache
+
+# Ignore generated documentation
+*.pdf
+*.docx
+
+# Ignore dependency directories
+*.d
+*.dSYM/
+*.ipch/
+*.pdb
+
+# Ignore dependency managers' files
+*.vscode/
+*.ninja
+*.cmake
+*.cmake.in
+*.cmake.org
+
+# Ignore Mac OS X specific files
+.DS_Store
+
+# Ignore Windows specific files
+Thumbs.db
+Desktop.ini
