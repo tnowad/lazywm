@@ -9,6 +9,8 @@ include_directories(${X11_INCLUDE_DIR})
 
 add_executable(lazywm
     src/main.cpp
+    src/WindowManager.h
+    src/WindowManager.cpp
 )
 
 target_link_libraries(lazywm ${X11_LIBRARIES})

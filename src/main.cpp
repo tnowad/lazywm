@@ -1,25 +1,7 @@
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#include <cstdio>
+#include "WindowManager.h"
 
 int main() {
-  Display *display = XOpenDisplay(NULL);
-  Window root;
-
-  root = DefaultRootWindow(display);
-
-  XSelectInput(display, root, KeyPressMask);
-
-  XEvent event;
-  while (true) {
-    XNextEvent(display, &event);
-
-    if (event.type == KeyPress) {
-      printf("Keycode: %u\n", event.xkey.keycode);
-      break;
-    }
-  }
-
-  XCloseDisplay(display);
+  WindowManager& wm = WindowManager::getInstance();
+  wm.run();
   return 0;
 }
