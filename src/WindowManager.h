@@ -2,23 +2,23 @@
 #define WINDOWMANAGER_H
 
 #include <X11/Xlib.h>
-#include <vector>
 #include <memory>
+#include <vector>
 
 class WindowManager {
 public:
-    static WindowManager& getInstance();
-    void run();
+  static WindowManager &getInstance();
+  void run();
 
 private:
-    WindowManager();
-    ~WindowManager();
+  WindowManager();
+  ~WindowManager();
 
-    void handleEvent(XEvent *event);
+  void handleEvent(XEvent *event);
 
-    Display *display;
-    int screen;
-    Window root;
+  Display *display;
+  int screen;
+  Window root;
 };
 
 #endif // WINDOWMANAGER_H
