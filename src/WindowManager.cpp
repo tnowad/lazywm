@@ -1,4 +1,7 @@
 #include "WindowManager.h"
+#include <X11/X.h>
+#include <X11/Xlib.h>
+#include <X11/cursorfont.h>
 #include <iostream>
 
 WindowManager::WindowManager() {
@@ -9,7 +12,12 @@ WindowManager::WindowManager() {
   }
   screen = DefaultScreen(display);
   root = RootWindow(display, screen);
-  XSelectInput(display, root, SubstructureNotifyMask | FocusChangeMask);
+  cursor = XCreateFontCursor(display, XC_left_ptr);
+
+  XDefineCursor(display, root, cursor);
+  XSelectInput(display, root,
+               SubstructureNotifyMask | FocusChangeMask | KeyPressMask |
+                   ButtonPressMask | ButtonReleaseMask | PointerMotionMask);
 }
 
 WindowManager::~WindowManager() { XCloseDisplay(display); }
@@ -28,10 +36,5 @@ void WindowManager::run() {
 }
 
 void WindowManager::handleEvent(XEvent *event) {
-  switch (event->type) {
-  case MapRequest:
-    break;
-  case DestroyNotify:
-    break;
-  }
+  std::cout << "Received event: " << event->type << std::endl;
 }

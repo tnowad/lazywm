@@ -19,6 +19,7 @@ private:
   Display *display;
   int screen;
   Window root;
+  Cursor cursor;
 };
 
 #endif // WINDOWMANAGER_H
