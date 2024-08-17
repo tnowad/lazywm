@@ -20,6 +20,7 @@
 class WindowManager {
 public:
   WindowManager();
+  ~WindowManager();
   void Initialize();
   void StartEventLoop();
 
@@ -37,6 +38,7 @@ private:
   std::unique_ptr<StateStore> state_store_;
   std::unique_ptr<IPCManager> ipc_manager_;
   Display *display_;
+  Window root_window_;
 };
 
 #endif // WINDOW_MANAGER_H

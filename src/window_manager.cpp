@@ -1,5 +1,7 @@
 #include "window_manager.h"
-#include <iostream>
+#include <X11/X.h>
+#include <X11/Xlib.h>
+#include <X11/keysym.h>
 
 WindowManager::WindowManager()
     : event_bus_(std::make_unique<EventBus>()),
@@ -13,13 +15,39 @@ WindowManager::WindowManager()
       monitor_manager_(std::make_unique<MonitorManager>()),
       log_manager_(std::make_unique<LogManager>()),
       state_store_(std::make_unique<StateStore>()),
-      ipc_manager_(std::make_unique<IPCManager>()) {}
+      ipc_manager_(std::make_unique<IPCManager>()),
+      display_(XOpenDisplay(nullptr)),
+      root_window_(DefaultRootWindow(display_)) {}
+
+WindowManager::~WindowManager() { XCloseDisplay(display_); }
 
 void WindowManager::Initialize() {
-  std::cout << "Initializing WindowManager..." << std::endl;
+  if (!display_) {
+    this->log_manager_->LogError("Failed to open X display.");
+    return;
+  }
+
+  XSelectInput(display_, root_window_,
+               SubstructureNotifyMask | SubstructureRedirectMask |
+                   KeyPressMask | KeyReleaseMask | ButtonPressMask |
+                   ButtonReleaseMask | PointerMotionMask | FocusChangeMask |
+                   VisibilityChangeMask | EnterWindowMask | LeaveWindowMask);
 }
 
 void WindowManager::StartEventLoop() {
-  std::cout << "Starting event loop..." << std::endl;
-  // Simulate event loop
+  if (!display_) {
+    this->log_manager_->LogError("Failed to open X display.");
+    return;
+  }
+
+  XEvent event;
+  while (true) {
+    XNextEvent(display_, &event);
+    switch (event.type) {
+    default:
+      this->log_manager_->LogInfo("Unknown event: " +
+                                  std::to_string(event.type));
+      break;
+    }
+  }
 }
