@@ -36,6 +36,7 @@ private:
   std::unique_ptr<LogManager> log_manager_;
   std::unique_ptr<StateStore> state_store_;
   std::unique_ptr<IPCManager> ipc_manager_;
+  Display *display_;
 };
 
 #endif // WINDOW_MANAGER_H
