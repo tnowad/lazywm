@@ -1,7 +1,9 @@
-#include "WindowManager.h"
+
+#include "window_manager.h"
 
 int main() {
-  WindowManager &wm = WindowManager::getInstance();
-  wm.run();
+  WindowManager wm;
+  wm.Initialize();
+  wm.StartEventLoop();
   return 0;
 }
