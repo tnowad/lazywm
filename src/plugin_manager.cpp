@@ -1,4 +1,5 @@
 #include "plugin_manager.h"
+
 #include <iostream>
 
 void PluginManager::LoadPlugin(const std::string &plugin_name) {

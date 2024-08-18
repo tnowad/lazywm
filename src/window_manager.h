@@ -1,6 +1,11 @@
 #ifndef WINDOW_MANAGER_H
 #define WINDOW_MANAGER_H
 
+#include <X11/Xlib.h>
+
+#include <memory>
+#include <vector>
+
 #include "compositor.h"
 #include "config_manager.h"
 #include "event_bus.h"
@@ -13,18 +18,15 @@
 #include "state_store.h"
 #include "window_layout_manager.h"
 #include "workspace_manager.h"
-#include <X11/Xlib.h>
-#include <memory>
-#include <vector>
 
 class WindowManager {
-public:
+ public:
   WindowManager();
   ~WindowManager();
   void Initialize();
   void StartEventLoop();
 
-private:
+ private:
   std::unique_ptr<EventBus> event_bus_;
   std::unique_ptr<ConfigManager> config_manager_;
   std::unique_ptr<InputManager> input_manager_;
@@ -41,4 +43,4 @@ private:
   Window root_window_;
 };
 
-#endif // WINDOW_MANAGER_H
+#endif  // WINDOW_MANAGER_H

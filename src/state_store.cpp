@@ -1,4 +1,5 @@
 #include "state_store.h"
+
 #include <iostream>
 
 void StateStore::SaveState() { std::cout << "Saving state..." << std::endl; }

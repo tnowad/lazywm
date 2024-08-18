@@ -1,4 +1,5 @@
 #include "ipc_manager.h"
+
 #include <iostream>
 
 void IPCManager::SendMessage(const std::string &message) {

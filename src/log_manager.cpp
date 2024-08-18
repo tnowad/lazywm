@@ -1,4 +1,5 @@
 #include "log_manager.h"
+
 #include <iostream>
 
 void LogManager::LogError(const std::string &message) {

@@ -5,9 +5,9 @@
 #include <string>
 
 class LogManager {
-public:
+ public:
   void LogError(const std::string &message);
   void LogInfo(const std::string &message);
 };
 
-#endif // LOG_MANAGER_H
+#endif  // LOG_MANAGER_H

@@ -6,28 +6,28 @@
 #include <vector>
 
 class LayoutStrategy {
-public:
+ public:
   virtual void ArrangeWindows(const std::vector<int> &windows) = 0;
   virtual ~LayoutStrategy() = default;
 };
 
 class TilingLayout : public LayoutStrategy {
-public:
+ public:
   void ArrangeWindows(const std::vector<int> &windows) override;
 };
 
 class FloatingLayout : public LayoutStrategy {
-public:
+ public:
   void ArrangeWindows(const std::vector<int> &windows) override;
 };
 
 class WindowLayoutManager {
-public:
+ public:
   void SetLayoutStrategy(std::unique_ptr<LayoutStrategy> strategy);
   void ArrangeWindows(const std::vector<int> &windows);
 
-private:
+ private:
   std::unique_ptr<LayoutStrategy> layout_strategy_;
 };
 
-#endif // WINDOW_LAYOUT_MANAGER_H
+#endif  // WINDOW_LAYOUT_MANAGER_H

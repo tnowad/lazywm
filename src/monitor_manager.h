@@ -2,10 +2,10 @@
 #define MONITOR_MANAGER_H
 
 class MonitorManager {
-public:
+ public:
   void AddMonitor();
   void RemoveMonitor();
   void ConfigureMonitor(int index);
 };
 
-#endif // MONITOR_MANAGER_H
+#endif  // MONITOR_MANAGER_H

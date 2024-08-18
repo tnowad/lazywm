@@ -6,20 +6,20 @@
 #include <vector>
 
 class Plugin {
-public:
+ public:
   virtual void Initialize() = 0;
   virtual void Execute() = 0;
   virtual ~Plugin() = default;
 };
 
 class PluginManager {
-public:
+ public:
   void LoadPlugin(const std::string &plugin_name);
   void UnloadPlugin(const std::string &plugin_name);
   void ExecutePlugins();
 
-private:
+ private:
   std::vector<std::unique_ptr<Plugin>> plugins_;
 };
 
-#endif // PLUGIN_MANAGER_H
+#endif  // PLUGIN_MANAGER_H

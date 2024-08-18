@@ -1,4 +1,5 @@
 #include "window_manager.h"
+
 #include <X11/X.h>
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
@@ -44,10 +45,10 @@ void WindowManager::StartEventLoop() {
   while (true) {
     XNextEvent(display_, &event);
     switch (event.type) {
-    default:
-      this->log_manager_->LogInfo("Unknown event: " +
-                                  std::to_string(event.type));
-      break;
+      default:
+        this->log_manager_->LogInfo("Unknown event: " +
+                                    std::to_string(event.type));
+        break;
     }
   }
 }

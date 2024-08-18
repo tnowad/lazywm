@@ -2,9 +2,9 @@
 #define SESSION_MANAGER_H
 
 class SessionManager {
-public:
+ public:
   void SaveSession();
   void RestoreSession();
 };
 
-#endif // SESSION_MANAGER_H
+#endif  // SESSION_MANAGER_H

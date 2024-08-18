@@ -2,11 +2,11 @@
 #define WORKSPACE_MANAGER_H
 
 class WorkspaceManager {
-public:
+ public:
   void AddWorkspace();
   void RemoveWorkspace();
   void SwitchWorkspace(int index);
   // Other workspace management methods
 };
 
-#endif // WORKSPACE_MANAGER_H
+#endif  // WORKSPACE_MANAGER_H

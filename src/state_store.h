@@ -2,10 +2,10 @@
 #define STATE_STORE_H
 
 class StateStore {
-public:
+ public:
   void SaveState();
   void LoadState();
   // Other state management methods
 };
 
-#endif // STATE_STORE_H
+#endif  // STATE_STORE_H

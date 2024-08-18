@@ -2,8 +2,8 @@
 #define CONFIG_MANAGER_H
 
 class ConfigManager {
-public:
+ public:
   ConfigManager();
 };
 
-#endif // CONFIG_MANAGER_H
+#endif  // CONFIG_MANAGER_H

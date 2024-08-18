@@ -1,4 +1,5 @@
 #include "monitor_manager.h"
+
 #include <iostream>
 
 void MonitorManager::AddMonitor() {

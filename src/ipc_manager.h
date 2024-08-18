@@ -4,9 +4,9 @@
 #include <string>
 
 class IPCManager {
-public:
+ public:
   void SendMessage(const std::string &message);
   void ReceiveMessage();
 };
 
-#endif // IPC_MANAGER_H
+#endif  // IPC_MANAGER_H

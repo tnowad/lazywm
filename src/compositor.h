@@ -2,9 +2,9 @@
 #define COMPOSITOR_H
 
 class Compositor {
-public:
+ public:
   void Render();
   void ApplyEffects();
 };
 
-#endif // COMPOSITOR_H
+#endif  // COMPOSITOR_H

@@ -1,4 +1,5 @@
 #include "compositor.h"
+
 #include <iostream>
 
 void Compositor::Render() { std::cout << "Rendering..." << std::endl; }

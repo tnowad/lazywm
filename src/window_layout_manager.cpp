@@ -1,4 +1,5 @@
 #include "window_layout_manager.h"
+
 #include <iostream>
 
 void TilingLayout::ArrangeWindows(const std::vector<int> &windows) {

@@ -5,12 +5,12 @@
 #include <unordered_map>
 
 class InputManager {
-public:
+ public:
   void BindCommand(int key_code, std::function<void()> command);
   void HandleInput(int key_code);
 
-private:
+ private:
   std::unordered_map<int, std::function<void()>> commands_;
 };
 
-#endif // INPUT_MANAGER_H
+#endif  // INPUT_MANAGER_H

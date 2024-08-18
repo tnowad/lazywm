@@ -6,14 +6,14 @@
 #include <vector>
 
 class EventBus {
-public:
+ public:
   using EventHandler = std::function<void(int)>;
 
   void Subscribe(EventHandler handler);
   void Publish(int event);
 
-private:
+ private:
   std::vector<EventHandler> handlers_;
 };
 
-#endif // EVENT_BUS_H
+#endif  // EVENT_BUS_H
