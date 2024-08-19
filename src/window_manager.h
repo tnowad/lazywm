@@ -41,6 +41,7 @@ class WindowManager {
   std::unique_ptr<IPCManager> ipc_manager_;
   Display *display_;
   Window root_window_;
+  Cursor cursor_;
 };
 
 #endif  // WINDOW_MANAGER_H

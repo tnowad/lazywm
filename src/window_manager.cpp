@@ -2,6 +2,7 @@
 
 #include <X11/X.h>
 #include <X11/Xlib.h>
+#include <X11/cursorfont.h>
 #include <X11/keysym.h>
 
 WindowManager::WindowManager()
@@ -18,7 +19,8 @@ WindowManager::WindowManager()
       state_store_(std::make_unique<StateStore>()),
       ipc_manager_(std::make_unique<IPCManager>()),
       display_(XOpenDisplay(nullptr)),
-      root_window_(DefaultRootWindow(display_)) {}
+      root_window_(DefaultRootWindow(display_)),
+      cursor_(XCreateFontCursor(display_, XC_left_ptr)) {}
 
 WindowManager::~WindowManager() { XCloseDisplay(display_); }
 
@@ -33,6 +35,8 @@ void WindowManager::Initialize() {
                    KeyPressMask | KeyReleaseMask | ButtonPressMask |
                    ButtonReleaseMask | PointerMotionMask | FocusChangeMask |
                    VisibilityChangeMask | EnterWindowMask | LeaveWindowMask);
+
+  XDefineCursor(display_, root_window_, cursor_);
 }
 
 void WindowManager::StartEventLoop() {
