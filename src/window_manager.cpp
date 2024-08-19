@@ -62,6 +62,27 @@ void WindowManager::StartEventLoop() {
   XEvent event;
   while (true) {
     XNextEvent(display_, &event);
-    this->event_bus_->Publish(event.type, event);
+    switch (event.type) {
+      case KeyPress:
+      case ButtonPress:
+      case MotionNotify:
+      case EnterNotify:
+      case FocusIn:
+      case Expose:
+      case DestroyNotify:
+      case UnmapNotify:
+      case MapRequest:
+        XMapWindow(display_, event.xmaprequest.window);
+        break;
+      case ConfigureNotify:
+      case ConfigureRequest:
+      case PropertyNotify:
+      case ClientMessage:
+      case MappingNotify:
+      default:
+        this->log_manager_->LogInfo("Unhandled event type: " +
+                                    std::to_string(event.type));
+        break;
+    }
   }
 }
