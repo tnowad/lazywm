@@ -1,9 +1,22 @@
+
 #include "window_manager.h"
 
 #include <X11/X.h>
 #include <X11/Xlib.h>
 #include <X11/cursorfont.h>
 #include <X11/keysym.h>
+
+#include <cstdlib>
+
+void SetupKeyBindings(InputManager& input_manager, Display* display) {
+  unsigned int modifiers = Mod1Mask;
+
+  input_manager.BindCommand(
+      XKeysymToKeycode(display, XStringToKeysym("Return")),
+      modifiers | ShiftMask, [] { system("st"); });
+  input_manager.BindCommand(XKeysymToKeycode(display, XStringToKeysym("r")),
+                            modifiers, [] { system("rofi -show drun"); });
+}
 
 WindowManager::WindowManager()
     : event_bus_(std::make_unique<EventBus>()),
@@ -31,12 +44,13 @@ void WindowManager::Initialize() {
   }
 
   XSelectInput(display_, root_window_,
-               SubstructureNotifyMask | SubstructureRedirectMask |
-                   KeyPressMask | KeyReleaseMask | ButtonPressMask |
-                   ButtonReleaseMask | PointerMotionMask | FocusChangeMask |
-                   VisibilityChangeMask | EnterWindowMask | LeaveWindowMask);
+               SubstructureRedirectMask | SubstructureNotifyMask |
+                   ButtonPressMask | PointerMotionMask | EnterWindowMask |
+                   LeaveWindowMask | StructureNotifyMask | PropertyChangeMask);
 
   XDefineCursor(display_, root_window_, cursor_);
+
+  SetupKeyBindings(*input_manager_, display_);
 }
 
 void WindowManager::StartEventLoop() {
@@ -48,11 +62,6 @@ void WindowManager::StartEventLoop() {
   XEvent event;
   while (true) {
     XNextEvent(display_, &event);
-    switch (event.type) {
-      default:
-        this->log_manager_->LogInfo("Unknown event: " +
-                                    std::to_string(event.type));
-        break;
-    }
+    this->event_bus_->Publish(event.type, event);
   }
 }

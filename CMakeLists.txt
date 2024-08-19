@@ -48,3 +48,18 @@ add_custom_target(run
     COMMENT "Running lazywm"
 )
 
+add_custom_target(debug
+    DEPENDS lazywm
+    COMMAND Xephyr -screen 1280x720 :1 &
+    COMMAND sleep 1
+    COMMAND DISPLAY=:1 gdb -ex run --args ./lazywm
+    COMMAND killall Xephyr
+    COMMENT "Debugging lazywm"
+)
+
+install(TARGETS lazywm DESTINATION bin)
+install(FILES src/config_manager.h src/event_bus.h src/input_manager.h src/compositor.h
+        src/ipc_manager.h src/log_manager.h src/monitor_manager.h src/plugin_manager.h
+        src/session_manager.h src/state_store.h src/window_layout_manager.h
+        src/window_manager.h src/workspace_manager.h
+        DESTINATION include/lazywm)
